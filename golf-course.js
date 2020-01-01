@@ -6,14 +6,22 @@ class GolfCourse {
     this.features = features;
     this.currentlyPlaying = [];
   }
-  checkInGroup(group){ 
-    if(this.openings - group.length >=0){
+  checkInGroup(group) {
+    if (this.openings - group.length >= 0) {
       this.openings = this.openings - group.length;
-      for(var i = 0; i <group.length; i++){
-        this.currentlyPlaying.push(group[i].name);
+      for (var i = 0; i < group.length; i++) {
+        this.currentlyPlaying.unshift(group[i].name);
       }
     }
   }
+  recommendTees(golfer) {
+    if (golfer.handicap <= 10) {
+      return "You should play from the Difficult Tees.";
+    } else if (golfer.handicap >= 15) {
+      return "You should play from the Forward Tees.";
+    } else {
+      return "You should play from the Middle Tees.";
+    }
+  }
 }
-
 module.exports = GolfCourse;
